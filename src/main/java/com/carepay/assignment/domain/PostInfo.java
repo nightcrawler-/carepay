@@ -1,11 +1,9 @@
 package com.carepay.assignment.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
-@Entity
-@Table(name = "post")
+@MappedSuperclass
 public class PostInfo {
 
     @Id
@@ -18,5 +16,9 @@ public class PostInfo {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
