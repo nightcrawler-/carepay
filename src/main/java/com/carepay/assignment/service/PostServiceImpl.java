@@ -18,10 +18,15 @@ public class PostServiceImpl implements PostService {
 
     @Autowired
     private PostRepository postRepository;
-    
+
     @Override
     public PostDetails createPost(@Valid CreatePostRequest createPostRequest) {
-        throw new IllegalArgumentException("Not implemented"); // TODO: Implement
+
+        PostDetails data = new PostDetails();
+        data.setTitle(createPostRequest.getTitle());
+        data.setContent(createPostRequest.getContent());
+
+        return postRepository.save(data);
     }
 
     @Override
@@ -31,7 +36,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostDetails getPostDetails(Long id) {
-        return (PostDetails)postRepository.findById(id).get();
+        return (PostDetails) postRepository.findById(id).get();
     }
 
     @Override
