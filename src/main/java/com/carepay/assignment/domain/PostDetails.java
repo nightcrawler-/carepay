@@ -18,8 +18,7 @@ public class PostDetails extends PostInfo {
         return content;
     }
 
-    @NotNull
-    public void setContent(@NotNull String content) {
+    public void setContent(String content) {
         this.content = content;
     }
 }
