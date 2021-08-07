@@ -15,7 +15,7 @@ public class Comment {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "post_id")
-    private PostDetails postDetails;
+    private PostDetails post;
 
     public Long getId() {
         return id;
@@ -34,11 +34,11 @@ public class Comment {
     }
 
     public PostDetails getPostDetails() {
-        return postDetails;
+        return post;
     }
 
     public void setPostDetails(PostDetails postDetails) {
-        this.postDetails = postDetails;
+        this.post = postDetails;
     }
 
 }
