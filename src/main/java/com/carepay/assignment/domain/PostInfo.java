@@ -4,6 +4,8 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
 
 @MappedSuperclass
 public class PostInfo {
