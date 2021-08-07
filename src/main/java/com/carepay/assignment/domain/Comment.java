@@ -13,13 +13,13 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    private String content;
+    private String comment;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "post_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private PostDetails postDetails;
+    private PostDetails post;
 
     public Long getId() {
         return id;
@@ -29,20 +29,20 @@ public class Comment {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public String getComment() {
+        return comment;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
-    public PostDetails getPostDetails() {
-        return postDetails;
+    public PostDetails getPost() {
+        return post;
     }
 
-    public void setPostDetails(PostDetails postDetails) {
-        this.postDetails = postDetails;
+    public void setPost(PostDetails post) {
+        this.post = post;
     }
 
 }

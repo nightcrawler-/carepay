@@ -29,7 +29,7 @@ public class CommentServiceImpl implements CommentService {
     public Comment createComment(Long postId, Comment comment) throws Exception {
 
         return postRepository.findById(postId).map(post -> {
-            comment.setPostDetails(post);
+            comment.setPost(post);
             return commentRepository.save(comment);
         }).orElseThrow(() -> new Exception("PostId " + postId + " not found"));
    
