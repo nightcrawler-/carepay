@@ -2,9 +2,8 @@ package com.carepay.assignment.web;
 
 import javax.validation.Valid;
 
+import com.carepay.assignment.domain.Post;
 import com.carepay.assignment.domain.CreatePostRequest;
-import com.carepay.assignment.domain.PostDetails;
-import com.carepay.assignment.domain.PostInfo;
 import com.carepay.assignment.service.PostService;
 import com.carepay.assignment.service.PostServiceImpl;
 import org.springframework.data.domain.Page;
@@ -30,18 +29,18 @@ public class PostController {
     }
 
     @GetMapping
-    Page<PostInfo> getPosts(Pageable pageable) {
+    Page<Post> getPosts(Pageable pageable) {
         return postService.getPosts(pageable);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    PostDetails createPost(@Valid @RequestBody CreatePostRequest createPostRequest) {
+    Post createPost(@Valid @RequestBody CreatePostRequest createPostRequest) {
         return postService.createPost(createPostRequest);
     }
 
     @GetMapping("{id}")
-    PostDetails getPostDetails(@PathVariable("id") final Long id) {
+    Post getPostDetails(@PathVariable("id") final Long id) {
         return postService.getPostDetails(id);
     }
 

@@ -3,17 +3,16 @@ package com.carepay.assignment.service;
 import javax.validation.Valid;
 
 import com.carepay.assignment.domain.CreatePostRequest;
-import com.carepay.assignment.domain.PostDetails;
-import com.carepay.assignment.domain.PostInfo;
+import com.carepay.assignment.domain.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface PostService {
-    PostDetails createPost(@Valid CreatePostRequest createPostRequest);
+    Post createPost(@Valid CreatePostRequest createPostRequest);
 
-    Page<PostInfo> getPosts(final Pageable pageable);
+    Page<Post> getPosts(final Pageable pageable);
 
-    PostDetails getPostDetails(Long id);
+    Post getPostDetails(Long id);
 
     void deletePost(Long id);
 }
