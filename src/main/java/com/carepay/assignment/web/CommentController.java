@@ -39,7 +39,7 @@ public class CommentController {
 
     @GetMapping("{id}")
     Optional<Comment> findByIdAndPostId(@PathVariable(value = "postId") Long postId, @PathVariable(value = "id") Long id) {
-        return commentService.findByIdAndPostId(postId, id);
+        return commentService.findByIdAndPostId(id, postId);
     }
 
     @PostMapping
