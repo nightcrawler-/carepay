@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import com.carepay.assignment.domain.CreatePostRequest;
 import com.carepay.assignment.domain.PostDetails;
+import com.carepay.assignment.exceptions.ResourceNotFoundException;
 import com.carepay.assignment.domain.Comment;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.carepay.assignment.repository.CommentRepository;
 import com.carepay.assignment.repository.PostRepository;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -22,7 +24,7 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
-    @Autowired  
+    @Autowired
     private PostRepository postRepository;
 
     @Override
@@ -32,7 +34,7 @@ public class CommentServiceImpl implements CommentService {
             comment.setPost(post);
             return commentRepository.save(comment);
         }).orElseThrow(() -> new Exception("PostId " + postId + " not found"));
-   
+
     }
 
     @Override
@@ -42,11 +44,21 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Optional<Comment> findByIdAndPostId(Long id, Long postId) {
-        return commentRepository.findByIdAndPostId(id, postId);
+        Optional<Comment> result = commentRepository.findByIdAndPostId(id, postId);
+        if (result.isEmpty()) {
+            throw new ResourceNotFoundException();
+        }
+        return result;
     }
 
     @Override
     public void deleteComment(Long id) {
+        try {
+            commentRepository.findById(id).get();
+
+        } catch (NoSuchElementException ex) {
+            throw new ResourceNotFoundException();
+        }
         commentRepository.deleteById(id);
     }
 }

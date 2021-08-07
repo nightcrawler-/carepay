@@ -1,10 +1,13 @@
 package com.carepay.assignment.service;
 
+import java.util.NoSuchElementException;
+
 import javax.validation.Valid;
 
 import com.carepay.assignment.domain.CreatePostRequest;
 import com.carepay.assignment.domain.PostDetails;
 import com.carepay.assignment.domain.PostInfo;
+import com.carepay.assignment.exceptions.ResourceNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -36,11 +39,20 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostDetails getPostDetails(Long id) {
-        return (PostDetails) postRepository.findById(id).get();
+
+        PostDetails result;
+        try {
+            result = (PostDetails) postRepository.findById(id).get();
+
+        } catch (NoSuchElementException ex) {
+            throw new ResourceNotFoundException();
+        }
+        return result;
     }
 
     @Override
     public void deletePost(Long id) {
+        getPostDetails(id);//Should conviniently throw an exception if item is missing
         postRepository.deleteById(id);
     }
 }

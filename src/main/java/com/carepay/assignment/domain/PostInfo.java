@@ -11,6 +11,7 @@ public class PostInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
     private String title;
 
     public String getTitle() {

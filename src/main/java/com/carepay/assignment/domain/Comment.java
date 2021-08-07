@@ -4,6 +4,9 @@ import javax.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name = "comment")
@@ -13,6 +16,8 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @NotNull
+    @Size(max = 100)
     private String comment;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

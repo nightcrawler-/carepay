@@ -3,7 +3,7 @@ package com.carepay.assignment.domain;
 import java.util.List;
 
 import javax.persistence.*;
-
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "post")
@@ -18,7 +18,8 @@ public class PostDetails extends PostInfo {
         return content;
     }
 
-    public void setContent(String content) {
+    @NotNull
+    public void setContent(@NotNull String content) {
         this.content = content;
     }
 }
