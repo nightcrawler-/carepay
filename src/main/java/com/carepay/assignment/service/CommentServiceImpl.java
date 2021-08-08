@@ -1,9 +1,5 @@
 package com.carepay.assignment.service;
 
-import javax.validation.Valid;
-
-import com.carepay.assignment.domain.CreatePostRequest;
-import com.carepay.assignment.domain.PostDetails;
 import com.carepay.assignment.exceptions.ResourceNotFoundException;
 import com.carepay.assignment.domain.Comment;
 

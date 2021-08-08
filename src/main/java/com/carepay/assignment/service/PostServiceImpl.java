@@ -34,7 +34,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Page<PostInfo> getPosts(Pageable pageable) {
-        return postRepository.findAll(pageable).map(postDetails -> (PostInfo) postDetails);
+        return postRepository.findAll(pageable).map(postDetails -> new PostInfo(postDetails.getId(), postDetails.getTitle()));
     }
 
     @Override

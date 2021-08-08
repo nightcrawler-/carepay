@@ -2,8 +2,6 @@ package com.carepay.assignment.web;
 
 import javax.validation.Valid;
 
-import com.carepay.assignment.domain.CreatePostRequest;
-import com.carepay.assignment.domain.PostDetails;
 import com.carepay.assignment.domain.Comment;
 import com.carepay.assignment.service.CommentService;
 import com.carepay.assignment.service.CommentServiceImpl;
