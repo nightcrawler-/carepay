@@ -44,9 +44,9 @@ public class MyAction {
         int i = 0;
         try {
             while (true){//A for loop should suffice for this as the array size can be determined from the length of the array.
-                if (words[i].getClass() == String.class) {
+                if (words[i].getClass() == String.class) {//Prefer to use instance of instead of class comparisons.
                     String so = (String)words[i];;
-                    so = so.toUpperCase();
+                    so = so.toUpperCase();// Unnecessary re-assignment
                     System.out.println(so);
                 }
                 i++;
