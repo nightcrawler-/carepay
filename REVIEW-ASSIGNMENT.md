@@ -7,6 +7,7 @@ public class MyAction {
     public Collection getCustomers(String firstName, String lastName, String address, String zipCode, String city) throws SQLException {
         Connection conn = ds.getConnection(); //This resource should be released at some point.
         String query = new String("SELECT * FROM customers where 1=1");// This is a very bad way to write a query. A prepared statement is better as it reduces the chances of SQL injection.
+        //The following 25 lines of code completely fail as the comparisons are all wrong for the kind of data being passed in.
         if (firstName != null) {
             query = query + " and first_name = '" + firstName + "'";
         }
@@ -22,12 +23,13 @@ public class MyAction {
         if (firstName != null) {
             query = query + " and city = '" + city + "'";
         }
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery(query);//Use meanignful names
+        Statement stmt = conn.createStatement();//Use meaningful names, statement
+        ResultSet rs = stmt.executeQuery(query);//Use meanignful names, resultSet
         List customers = new ArrayList();
         while (rs.next()) {
             Object[] objects = new Object[] { rs.getString(1), rs.getString(2) };
             if (debug) print(objects, 4);
+            //While reading the ResultSet using column index is more efficient, using the column name would make the code easier to read and understands
             customers.add(new Customer(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
         }
         return customers;
@@ -41,7 +43,7 @@ public class MyAction {
     public static void printUpper(Object [] words){
         int i = 0;
         try {
-            while (true){
+            while (true){//A for loop should suffice for this as the array size can be determined from the length of the array.
                 if (words[i].getClass() == String.class) {
                     String so = (String)words[i];;
                     so = so.toUpperCase();
@@ -49,7 +51,7 @@ public class MyAction {
                 }
                 i++;
             }
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {//Unnecessary, but it is good practice to catch exceptions. 
             //iteration complete
         }
     }
