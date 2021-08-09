@@ -1,3 +1,5 @@
+//Overall, taking advantage of static analysis and code formating would help.
+//The creation of unnecesary objects should be avoided
 @Component
 public class MyAction {
     public boolean debug = true; //This should probably be in a config file or inferred from the environment.
@@ -45,7 +47,7 @@ public class MyAction {
         try {
             while (true){//A for loop should suffice for this as the array size can be determined from the length of the array.
                 if (words[i].getClass() == String.class) {//Prefer to use instance of instead of class comparisons.
-                    String so = (String)words[i];;
+                    String so = (String)words[i];;//This will not compile.
                     so = so.toUpperCase();// Unnecessary re-assignment
                     System.out.println(so);
                 }
