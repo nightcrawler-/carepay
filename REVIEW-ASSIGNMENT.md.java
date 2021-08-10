@@ -1,4 +1,3 @@
-## Review on REVIEW-ASSIGNMENT.md.java (Formatting issues with the MD file)
 //Overall, taking advantage of static analysis and code formating would help.
 //The creation of unnecesary objects should be avoided
 @Component
